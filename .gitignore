@@ -14,3 +14,8 @@ Diamant/src/main/resources/VERSION
 /log/
 /.gradle/
 /.idea/
+/install4j/*sh
+/install4j/*exe
+/install4j/*xml
+/install4j/*txt
+/install4j/md5sums
