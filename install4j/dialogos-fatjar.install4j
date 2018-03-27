@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="7.0.4" transformSequenceNumber="7">
-  <directoryPresets config="../../dialogos/build/libs/dialogos-all.jar" />
-  <application name="DialogOS" distributionSourceDir="" applicationId="0985-7768-2548-4677" mediaDir="." mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="DialogOS" publisher="" publisherWeb="" version="2.0" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="623654d76cd9c023" javaMinVersion="1.7" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
+  <directoryPresets config="./generated_installers" />
+  <application name="DialogOS" distributionSourceDir="" applicationId="0985-7768-2548-4677" mediaDir="./generated_installers" mediaFilePattern="${compiler:sys.shortName}_${compiler:sys.platform}_${compiler:sys.version}" compression="6" lzmaCompression="false" pack200Compression="false" excludeSignedFromPacking="true" commonExternalFiles="false" createMd5Sums="true" shrinkRuntime="true" shortName="DialogOS" publisher="" publisherWeb="" version="2.0" allPathsRelative="true" backupOnSave="false" autoSave="false" convertDotsToUnderscores="true" macSignature="????" macVolumeId="623654d76cd9c023" javaMinVersion="1.7" javaMaxVersion="" allowBetaVM="false" jdkMode="runtimeJre" jdkName="">
     <languages skipLanguageSelection="false" languageSelectionInPrincipalLanguage="false">
       <principalLanguage id="en" customLocalizationFile="" />
       <additionalLanguages />
@@ -17,26 +17,42 @@
   </application>
   <files keepModificationTimes="false" missingFilesStrategy="warn" globalExcludeSuffixes="" defaultOverwriteMode="4" defaultUninstallMode="0" launcherOverwriteMode="3" defaultFileMode="644" defaultDirMode="755">
     <filesets />
-    <roots />
+    <roots>
+      <root id="352" fileset="" location="${installer:sys.userHome}" />
+    </roots>
     <mountPoints>
       <mountPoint id="58" root="" location="" mode="755" />
+      <mountPoint id="353" root="352" location=".dialogos" mode="755" />
+      <mountPoint id="354" root="352" location=".dialogos/dialogos.plugin.pocketsphinx" mode="755" />
     </mountPoints>
     <entries>
       <fileEntry mountPoint="58" file="../build/libs/dialogos-all.jar" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" />
+      <dirEntry mountPoint="354" file="./models/pocketsphinx_de" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="pocketsphinx_de" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+        <exclude />
+      </dirEntry>
+      <dirEntry mountPoint="354" file="./models/pocketsphinx_en" overwriteMode="4" shared="false" fileMode="644" uninstallMode="0" overrideFileMode="false" overrideOverwriteMode="false" overrideUninstallMode="false" entryMode="direct" subDirectory="pocketsphinx_en" excludeSuffixes="" dirMode="755" overrideDirMode="false">
+        <exclude />
+      </dirEntry>
     </entries>
     <components>
-      <component name="english language support" id="153" customizedId="" displayDescription="false" hideHelpButton="false" selected="true" changeable="true" downloadable="true" hidden="false">
-        <description />
+      <component name="English language support" id="153" customizedId="" displayDescription="false" hideHelpButton="false" selected="true" changeable="true" downloadable="true" hidden="false">
+        <description>Speech recognition support for English</description>
         <include all="false">
-          <entry location="LICENSE" fileType="regular" />
+          <entry location=".i4j_external_352/.dialogos/dialogos.plugin.pocketsphinx/en-us" fileType="regular" />
         </include>
         <dependencies />
       </component>
       <component name="dialogos" id="251" customizedId="" displayDescription="false" hideHelpButton="false" selected="true" changeable="false" downloadable="false" hidden="true">
         <description />
         <include all="false">
-          <entry location="dialogos-all.jar" fileType="regular" />
-          <entry location="dialogos" fileType="launcher" />
+          <entry location="." fileType="regular" />
+        </include>
+        <dependencies />
+      </component>
+      <component name="German language support" id="355" customizedId="" displayDescription="false" hideHelpButton="false" selected="true" changeable="true" downloadable="true" hidden="false">
+        <description>Speech recognition support for German</description>
+        <include all="false">
+          <entry location=".i4j_external_352/.dialogos/dialogos.plugin.pocketsphinx/de" fileType="regular" />
         </include>
         <dependencies />
       </component>
@@ -1053,7 +1069,7 @@ return console.askYesNo(message, true);
     </styles>
   </installerGui>
   <mediaSets>
-    <unixInstaller name="Unix Installer" id="59" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="" includeAllDownloadableComponents="false" includedJRE="" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="" contentFilesType="1">
+    <unixInstaller name="Unix Installer" id="59" customizedId="" mediaFileName="" installDir="${compiler:sys.shortName}" overridePrincipalLanguage="false" jreBitType="all" runPostProcessor="false" postProcessor="" failOnPostProcessorError="false" useLegacyMediaFileIds="false" legacyMediaFileIds="" downloadURL="http://tmp.chark.eu/dialogos" includeAllDownloadableComponents="false" includedJRE="" manualJREEntry="false" bundleType="1" jreURL="" jreShared="false" directDownload="false" installOnlyIfNecessary="false" customInstallBaseDir="" contentFilesType="3">
       <excludedComponents />
       <includedDownloadableComponents />
       <excludedLaunchers />

@@ -16,12 +16,16 @@ def eprint(*args, **kwargs):
 
 currdir = os.path.abspath(os.path.dirname(sys.argv[0]))
 modeldict = {}
+# workaround until the json file is valid.  Download by hand, remove the newline in the string in line 5, save as
+# pocketsphinx.json
 if False:
     modeldict = requests.get("http://www.coli.uni-saarland.de/~koller/dialogos/models/pocketsphinx.json").json()
 else:
     modeldict = simplejson.load(open("pocketsphinx.json"))
 
-for model in modeldict['dialogos.plugin.pocketsphinx'].values():
+for name, model in modeldict['dialogos.plugin.pocketsphinx'].items():
     eprint("downloading " + model['name'])
     data = requests.get(model["url"]).content
-    ZipFile(BytesIO(data)).extractall(currdir+"/models")
+    outdir = currdir + "/models/" + name
+    os.mkdir(outdir)
+    ZipFile(BytesIO(data)).extractall(outdir)
