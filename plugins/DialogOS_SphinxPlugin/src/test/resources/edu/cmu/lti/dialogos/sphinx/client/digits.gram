@@ -1,0 +1,70 @@
+#JSGF V1.0;
+
+grammar null;
+
+public <main> = <GARBAGE>
+   ( <digit> ) *
+;
+
+<digit> =
+   <even>
+ | <odd>
+ ;
+<even> =
+   two <GARBAGE>
+ | four <GARBAGE>
+ | six <GARBAGE>
+ | eight <GARBAGE>
+ | zero <GARBAGE>
+;
+<odd> =
+   one <GARBAGE>
+ | three <GARBAGE>
+ | five <GARBAGE>
+ | seven <GARBAGE>
+ | nine <GARBAGE>
+;
+
+<GARBAGE> = /0.999/ <NULL> | /0.001/ (<WEIGHTED_PHONE> <WEIGHTED_PHONE> [<WEIGHTED_PHONE>]) <GARBAGE> ;
+
+<WEIGHTED_PHONE>
+= /0.0293313/ "<PHONE_AA>"
+| /0.0255437/ "<PHONE_AE>"
+| /0.0825311/ "<PHONE_AH>"
+| /0.0134171/ "<PHONE_AO>"
+| /0.00391433/ "<PHONE_AW>"
+| /0.0133624/ "<PHONE_AY>"
+| /0.0248555/ "<PHONE_B>"
+| /0.00574187/ "<PHONE_CH>"
+| /0.0377366/ "<PHONE_D>"
+| /0.000677771/ "<PHONE_DH>"
+| /0.0321389/ "<PHONE_EH>"
+| /0.0337944/ "<PHONE_ER>"
+| /0.015898/ "<PHONE_EY>"
+| /0.0161898/ "<PHONE_F>"
+| /0.015877/ "<PHONE_G>"
+| /0.0108897/ "<PHONE_HH>"
+| /0.058451/ "<PHONE_IH>"
+| /0.040693/ "<PHONE_IY>"
+| /0.00741711/ "<PHONE_JH>"
+| /0.049962/ "<PHONE_K>"
+| /0.0579941/ "<PHONE_L>"
+| /0.0344779/ "<PHONE_M>"
+| /0.0710136/ "<PHONE_N>"
+| /0.011593/ "<PHONE_NG>"
+| /0.0224211/ "<PHONE_OW>"
+| /0.00149156/ "<PHONE_OY>"
+| /0.0231477/ "<PHONE_P>"
+| /0.0538775/ "<PHONE_R>"
+| /0.058415/ "<PHONE_S>"
+| /0.0102224/ "<PHONE_SH>"
+| /0.0568107/ "<PHONE_T>"
+| /0.00342024/ "<PHONE_TH>"
+| /0.00270876/ "<PHONE_UH>"
+| /0.0115512/ "<PHONE_UW>"
+| /0.0125335/ "<PHONE_V>"
+| /0.0104293/ "<PHONE_W>"
+| /0.00610459/ "<PHONE_Y>"
+| /0.0326981/ "<PHONE_Z>"
+| /0.000667308/ "<PHONE_ZH>"
+;

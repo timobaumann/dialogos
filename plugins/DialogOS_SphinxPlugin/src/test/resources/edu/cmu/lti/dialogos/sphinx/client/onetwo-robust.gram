@@ -1,0 +1,91 @@
+#JSGF V1.0;
+
+grammar null;
+
+public <main> =
+   /1/ three <NULL>
+ | /1/ two <NULL>
+ | /0.0001/ <GARBAGE> ;
+
+<GARBAGE> = (<CONSONANT> <VOWEL>) * ;
+
+<VOWEL> = PHONE_AA
+        | PHONE_AE
+        | PHONE_AH
+        | PHONE_AO
+        | PHONE_AW
+        | PHONE_AY
+        | PHONE_EH
+        | PHONE_ER
+        | PHONE_EY
+        | PHONE_IH
+        | PHONE_IY
+        | PHONE_OW
+        | PHONE_OY
+        | PHONE_UH
+        | PHONE_UW ;
+<CONSONANT>
+        = PHONE_B
+        | PHONE_CH
+        | PHONE_D
+        | PHONE_DH
+        | PHONE_F
+        | PHONE_G
+        | PHONE_HH
+        | PHONE_JH
+        | PHONE_K
+        | PHONE_L
+        | PHONE_M
+        | PHONE_N
+        | PHONE_NG
+        | PHONE_P
+        | PHONE_R
+        | PHONE_S
+        | PHONE_SH
+        | PHONE_T
+        | PHONE_TH
+        | PHONE_V
+        | PHONE_W
+        | PHONE_Y
+        | PHONE_Z
+        | PHONE_ZH ;
+
+<PHONE> = PHONE_AA
+        | PHONE_AE
+        | PHONE_AH
+        | PHONE_AO
+        | PHONE_AW
+        | PHONE_AY
+        | PHONE_B
+        | PHONE_CH
+        | PHONE_D
+        | PHONE_DH
+        | PHONE_EH
+        | PHONE_ER
+        | PHONE_EY
+        | PHONE_F
+        | PHONE_G
+        | PHONE_HH
+        | PHONE_IH
+        | PHONE_IY
+        | PHONE_JH
+        | PHONE_K
+        | PHONE_L
+        | PHONE_M
+        | PHONE_N
+        | PHONE_NG
+        | PHONE_OW
+        | PHONE_OY
+        | PHONE_P
+        | PHONE_R
+        | PHONE_S
+        | PHONE_SH
+        | PHONE_T
+        | PHONE_TH
+        | PHONE_UH
+        | PHONE_UW
+        | PHONE_V
+        | PHONE_W
+        | PHONE_Y
+        | PHONE_Z
+        | PHONE_ZH ;
