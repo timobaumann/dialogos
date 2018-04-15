@@ -3,7 +3,6 @@ plugins {
   id 'java'
   id 'com.github.johnrengelman.shadow' version '2.0.3'
   id 'com.github.hierynomus.license' version '0.14.0'
-  id 'com.bmuschko.izpack' version '2.1'
 }
 
 allprojects {
@@ -69,7 +68,7 @@ task clean_all {
 task clientLibrary(type:Jar) {
     manifest {
         attributes 'Implementation-Title': 'DialogOS Client Library',  
-        	'Implementation-Version': version
+        'Implementation-Version': version
     }
     
     baseName = 'dialogos-client-' + version
@@ -101,4 +100,4 @@ task clientLibrary(type:Jar) {
     with jar  
 }
 
-
+task install(dependsOn: installDist)
