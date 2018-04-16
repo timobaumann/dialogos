@@ -1,0 +1,3 @@
+ * run ```gradlew install``` to prepare all the files that the installer wants to include
+ * get the Sqlite plugin and put its jar and dependencies into external_plugins/
+ * run install4j
