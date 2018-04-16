@@ -19,3 +19,4 @@ Diamant/src/main/resources/VERSION
 /install4j/*xml
 /install4j/*txt
 /install4j/md5sums
+/install4j/generated_installers/*
