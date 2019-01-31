@@ -17,8 +17,8 @@ public class ExtensibleDictionary extends TextDictionary {
         try {
             URL.setURLStreamHandlerFactory(protocol -> "data".equals(protocol) ? new DataStreamHandler() : null);
         } catch (Error e) {
-            System.err.println("ExtensibleDictionary");
             if (!"factory already defined".equals(e.getMessage())) {
+                System.err.println("ExtensibleDictionary");
                 throw e;
             }
         }
@@ -43,8 +43,8 @@ public class ExtensibleDictionary extends TextDictionary {
                 sb.append(e.getPhonemes());
                 sb.append("\n");
             }
-            System.err.println(sb.toString());
             addendaUrlList.clear();
+            System.err.println("after encoding, data is: " + DataURLHelper.encodeData(sb.toString()));
             addendaUrlList.add(new URL(DataURLHelper.encodeData(sb.toString())));
         }
     }
