@@ -6,7 +6,7 @@ import java.net.URLEncoder;
 public class DataURLHelper {
 
     static String encodeData(String data) {
-        String s = null;
+        String s;
         data = data.replaceAll("\\+", "%2B");
         try {
             s = "data:" + URLEncoder.encode(data, "UTF-8");
