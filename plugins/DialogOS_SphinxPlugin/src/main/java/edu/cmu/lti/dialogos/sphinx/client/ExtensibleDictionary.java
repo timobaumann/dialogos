@@ -36,7 +36,7 @@ public class ExtensibleDictionary extends TextDictionary {
 
     public void loadExceptions(List<G2PEntry> g2pList) throws IOException {
         if (!g2pList.isEmpty()) {
-            StringBuilder sb = new StringBuilder("data:");
+            StringBuilder sb = new StringBuilder();
             for (G2PEntry e : g2pList) {
                 sb.append(e.getGraphemes());
                 sb.append(" ");
