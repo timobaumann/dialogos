@@ -51,6 +51,7 @@ public class DataStreamHandler extends URLStreamHandler {
     if (!BASE64.equals(encoding)) {
       try {
         data = URLDecoder.decode(data, "UTF-8");
+        System.err.println("after decoding data is: " + data);
       } catch (UnsupportedEncodingException e) {
         throw new AssertionError(e);
       }
