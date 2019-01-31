@@ -44,7 +44,7 @@ public class ExtensibleDictionary extends TextDictionary {
                 sb.append("\n");
             }
             addendaUrlList.clear();
-            System.err.println("after encoding, data is: " + DataURLHelper.encodeData(sb.toString()));
+            //System.err.println("after encoding, data is: " + DataURLHelper.encodeData(sb.toString()));
             addendaUrlList.add(new URL(DataURLHelper.encodeData(sb.toString())));
         }
     }
