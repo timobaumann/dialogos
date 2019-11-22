@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE wizard SYSTEM "Wizard.dtd">
+
+<wizard>
+	<plugin type="dialogos.plugin.tts">
+	</plugin>
+	<graph directed="1" Graphic="1" Layout="points">
+		<att name="width" type="integer" value="765"/>
+		<att name="height" type="integer" value="542"/>
+		<groovyFunctions></groovyFunctions>
+		<variable uid="79529c72-c521-4af8-a6fc-72fd6bd935cb">
+			<name>counter</name>
+			<type>int</type>
+			<value>4</value>
+		</variable>
+		<node uid="0169aaa0-5ef3-4556-9ad8-809388549e0c" class="com.clt.diamant.graph.nodes.EndNode">
+			<graphics x="342" y="300" fill="#9999ff"/>
+			<att name="title" type="string" value="Ende"/>
+		</node>
+		<node uid="2304eb2d-9801-4697-aa0e-4b6f5297662b" class="com.clt.diamant.graph.nodes.SetVariableNode">
+			<graphics x="330" y="179" fill="#c0c0c0"/>
+			<att name="title" type="string" value="Variable setzen"/>
+			<att name="assignments" type="list">
+				<att name="1" type="list">
+					<att name="var_uid" type="string" value="79529c72-c521-4af8-a6fc-72fd6bd935cb"/>
+					<att name="var_value" type="string" value="counter - 1"/>
+				</att>
+			</att>
+			<att name="simultaneous" type="boolean" value="0"/>
+		</node>
+		<node uid="456f5213-3e3a-4265-84ea-b3d757174255" class="com.clt.diamant.graph.nodes.ConditionalNode">
+			<graphics x="381" y="237" fill="#c0c0c0"/>
+			<att name="title" type="string" value="Bedingung"/>
+			<att name="expression" type="string" value="counter &lt;= 0"/>
+		</node>
+		<node uid="6ff1e030-ff63-47bf-9211-327c4f1b667c" class="com.clt.diamant.graph.nodes.StartNode">
+			<graphics x="370" y="40" fill="#9999ff"/>
+			<att name="title" type="string" value="Start"/>
+		</node>
+		<node uid="9efc2c38-4768-4700-815a-e387e86b5a38" class="com.clt.diamant.graph.nodes.SleepNode">
+			<graphics x="242" y="176" fill="#99ffff"/>
+			<att name="title" type="string" value="Warten"/>
+			<att name="time" type="string" value="300"/>
+		</node>
+		<node uid="e526fb05-052e-44a5-b7f2-b558422e7d51" class="de.saar.coli.dialogos.marytts.plugin.TTSNode">
+			<graphics x="345" y="103" fill="#00b200"/>
+			<att name="title" type="string" value="Sprachsynthese"/>
+			<att name="prompt" type="text">
+				<value>counter</value>
+			</att>
+			<att name="prompt_type" type="string" value="expression"/>
+			<att name="wait" type="boolean" value="0"/>
+			<att name="await_silence" type="boolean" value="0"/>
+		</node>
+		<edge src="2304eb2d-9801-4697-aa0e-4b6f5297662b" tgt="456f5213-3e3a-4265-84ea-b3d757174255">
+		</edge>
+		<edge src="456f5213-3e3a-4265-84ea-b3d757174255" tgt="0169aaa0-5ef3-4556-9ad8-809388549e0c">
+			<att name="condition" type="string" value="counter &lt;= 0"/>
+		</edge>
+		<edge src="456f5213-3e3a-4265-84ea-b3d757174255" tgt="e526fb05-052e-44a5-b7f2-b558422e7d51">
+			<att name="condition" type="string" value="else"/>
+		</edge>
+		<edge src="6ff1e030-ff63-47bf-9211-327c4f1b667c" tgt="e526fb05-052e-44a5-b7f2-b558422e7d51">
+		</edge>
+		<edge src="9efc2c38-4768-4700-815a-e387e86b5a38" tgt="2304eb2d-9801-4697-aa0e-4b6f5297662b">
+		</edge>
+		<edge src="e526fb05-052e-44a5-b7f2-b558422e7d51" tgt="9efc2c38-4768-4700-815a-e387e86b5a38">
+		</edge>
+	</graph>
+</wizard>

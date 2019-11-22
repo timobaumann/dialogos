@@ -225,7 +225,7 @@ public class MaryTTS
 
   /*
   * speak: Synthesizes given String. Further audioplayers won't be
-  * able to reproduce audio until the first one is finished.
+  * able to produce audio until the first one is finished.
   * Modifies the Document maryXML (inserting the text to be spoken).*/
   public void speak(String text) throws SpeechException{
     speak(text,true);
@@ -234,10 +234,9 @@ public class MaryTTS
   /*
   * speak: Like speak(String text). Difference: If waitUntilDone is
   * true then it will lock the resources, ie: further audioplayers
-  * won't be able to reproduce audio until the first one is finished.
+  * won't be able to produce audio until the first one is finished.
   * */
-  public void speak(String text, boolean waitUntilDone)
-      throws SpeechException {
+  public void speak(String text, boolean waitUntilDone) {
     this.setUserText2MaryXML(text);
     speakMaryXML(this.maryXML, waitUntilDone);
   }
@@ -252,7 +251,9 @@ public class MaryTTS
       audioPlayer = new AudioPlayer();
       AudioInputStream audioIS = mary.generateAudio(xml);
       audioPlayer.setAudio(audioIS);
+      System.err.println("starting to speak");
       audioPlayer.start();
+      System.err.println("started speaking");
       if (waitUntilDone){
         awaitEndOfSpeech();
       }
@@ -273,6 +274,7 @@ public class MaryTTS
   }
 
   public void awaitEndOfSpeech() {
+    System.err.println("awaiting end of speech");
     if (audioPlayer != null) {
       try {
         audioPlayer.join();
@@ -305,8 +307,19 @@ public class MaryTTS
 
   @Override
   synchronized public void stop() {
-    if (audioPlayer != null)
+    System.err.println("now stopping to speak");
+    if (audioPlayer != null) {
+      System.err.println("MaryTTS#stop(): initiating audio play cancellation");
       audioPlayer.cancel();
+      System.err.println("MaryTTS#stop(): audio play cancellation initiated");
+      try {
+        System.err.println("now waiting for join on speech stop");
+        audioPlayer.join();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+    System.err.println("done stopping to speak");
   }
 
   @Override

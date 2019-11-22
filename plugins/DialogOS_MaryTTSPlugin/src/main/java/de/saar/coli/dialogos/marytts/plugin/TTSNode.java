@@ -61,9 +61,7 @@ public class TTSNode extends AbstractOutputNode {
             return values();
         }
 
-        ;
-
-    private PromptType(String key) {
+        PromptType(String key) {
             this.key = key;
         }
 
@@ -148,40 +146,38 @@ public class TTSNode extends AbstractOutputNode {
     }
 
 
-    /*
-  * stopSynthesis: Stops the Synthesis midway.
+    /**
+     * stopSynthesis: Stops the Synthesis midway.
      */
     public void stopSynthesis() {
         Plugin.getSynthesizer().stop();
     }
 
-    /*
-  * speak: Given a properties map (configurations of the node) speaks what's
-  * in the prompt (possibly according to the settings).
-  * */
+    /**
+     * speak: Given a properties map (configurations of the node) speaks what's
+     * in the prompt (possibly according to the settings).
+     */
     public void speak(String prompt, Map<String, Object> properties) throws SpeechException {
 
         Settings settings = (Settings) this.getGraph().getOwner().getPluginSettings(Plugin.class);
 
-        // Till and Bri's (from the merge)
-        //    VoiceName voicename = (VoiceName)properties.get(TTSNode.VOICE);
-        //    if ((voicename == null) || StringTools.isEmpty(voicename.getName())) {
-        //      voicename = settings.getDefaultVoice();
-        //    }
-        //    TTSNode.speak(settings, voicename, prompt);
-        MaryTTS synthesizer = (MaryTTS) Plugin.getSynthesizer();
+        MaryTTS synthesizer = Plugin.getSynthesizer();
         VoiceName voicename = (VoiceName) properties.get(VOICE);
         setVoice(settings, synthesizer, voicename);
-        ((MaryTTS) synthesizer).setProsody2MaryXML(settings.getStrVolume(), settings.getPitch(), settings.getSpeed());
-        //Should the audio be played uninterrumped?
+        synthesizer.setProsody2MaryXML(settings.getStrVolume(), settings.getPitch(), settings.getSpeed());
+        //Should the audio be played uninterrupted?
         boolean wait = ((Boolean) properties.get(WAIT)).booleanValue();
         PromptType pType = (PromptType) properties.get(PROMPT_TYPE);
         //Prompt is maryxml or text?
         boolean awaitSilence = ((Boolean) properties.get(AWAIT_SILENCE)).booleanValue();
-        if (awaitSilence)
+        if (awaitSilence) {
+            System.err.println("speak(): awaiting end of previous speech");
             synthesizer.awaitEndOfSpeech();
-        else
+        } else {
+            System.err.println("speak(): stopping previous speech");
             synthesizer.stop();
+        }
+
         if (PromptType.maryxml.equals(pType)) {
             //Note: Regardless of the configurations in Settings it will
             //speak according to the configs in the prompt (xml)
@@ -191,9 +187,9 @@ public class TTSNode extends AbstractOutputNode {
         }
     }
 
-    /*
-  * speak: Speaks whats in prompt according to the given settings and voicename.
-  * */
+    /**
+     * speak: Speaks whats in prompt according to the given settings and voicename.
+     */
     static void speak(Settings settings, VoiceName voicename, String prompt)
             throws SpeechException {
         Synthesizer synthesizer = Plugin.getSynthesizer();
